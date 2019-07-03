@@ -1,51 +1,53 @@
-#### 直播 {#2）认证方式}
+#### 3）接口 {#3）接口}
 
-客户端向httpgw发起请求时，需要在HTTP头部中增加字段Authorization。
-
-##### 设备认证 {#设备认证}
-
-###### Authorization {#authorization}
-
-设备认证方式中的Authorization内容格式如下：
+##### 地址 {#地址}
 
 ```
-version={version};time={time};sign={sign};key={key};device_type_id={device_type_id};device_id={device_id};service={service}
-```
-
-###### Signature {#signature}
-
-Authorization中的sign字段是签名串，是对下列组合的字符串（UTF-8编码）做MD5计算
+https://apigwrest.open.rokid.com
 
 ```
-key={key}
-&
-device_type_id={device_type_id}
-&
-device_id={device_id}
-&
-service={service}
-&
-version={version}
-&
-time={time}
-&
-secret={secret}
+
+##### 绑定接口 （POST） {#绑定接口-（post）}
+
+```
+/v1/device/deviceManager/bindMaster
+
 ```
 
-###### 字段说明 {#字段说明}
+###### 参数说明： {#参数说明：}
 
-| 字段名称 | 意义 |
+| 参数名称 | 意义 |
 | :--- | :--- |
-| version | 版本，当前为1.0 |
-| time | UNIX时间 |
-| sign | 签名串，具体生成方式见下文 |
-| key | 授权KEY，从[开发者平台](https://developer.rokid.com/voice/#/)获取 |
-| device\_type\_id | 设备类型ID，同样从开发者平台获取 |
-| device\_id | 设备ID，客户端自己维护 |
-| service | 服务类型，自定义，建议与请求的服务名保持一致 |
-| secret | 密钥，从开发者平台获取 |
+| Authorization | 认证信息，http请求时，放置在header中 |
+| body | 传入json类型的字符串 例：{"userId":"xxxx"} userId是rokid账户id |
+| Content-Type | application/json;charset=utf-8 |
 
 ###### 返回结果： {#返回结果：}
+
+```
+{
+    "resultCode": 0,
+    "message": "success"
+}
+
+```
+
+##### 解绑接口 （POST） {#解绑接口-（post）}
+
+```
+/v1/device/deviceManager/unBindMaster
+
+```
+
+###### 参数说明： {#参数说明：_1}
+
+| 参数名称 | 意义 |
+| :--- | :--- |
+| Authorization | 认证信息，http请求时，放置在header中 |
+| body | 传入json类型的字符串 例：{"userId":"xxxx"} userId是rokid账户id |
+| Content-Type | application/json;charset=utf-8 |
+
+###### 返回结果： {#返回结果：_1}
 
 ```
 {
