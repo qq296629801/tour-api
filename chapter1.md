@@ -45,5 +45,14 @@ secret={secret}
 | service | 服务类型，自定义，建议与请求的服务名保持一致 |
 | secret | 密钥，从开发者平台获取 |
 
+###### 返回结果： {#返回结果：}
+
+```
+{
+    "resultCode": 0,
+    "message": "success"
+}
+```
+
 
 
